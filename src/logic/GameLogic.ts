@@ -1,27 +1,5 @@
-import internal from "stream";
-export class WorldLogic {
-  statusMatrix: string[][];
-  nextStatusMatrix: string[][];
-  constructor(statusMatrix: string[][]) {
-    this.statusMatrix = statusMatrix;
-    this.nextStatusMatrix = statusMatrix;
-  }
-
-  // updateMatrix(newMatrix: string[][]): string[][] {
-  //   this.statusMatrix = newMatrix;
-  //   return [['x'], ['x']];
-  // }
-}
-export interface Ruleset {
-  evolve(currentMatrix: string[][]): string[][]; 
-}
-
-export class ConwayRuleset implements Ruleset {
-  // Implement the rules for Conway here
-  evolve(currentMatrix: string[][]): string[][] {
-    return [['_', 'x', '_']];
-  }
-}
+import WorldLogic from "./WorldLogic";
+import Ruleset from "./rulesets/Ruleset";
 
 class GameLogic {
   world: WorldLogic;
