@@ -1,5 +1,4 @@
 import internal from "stream";
-
 export class WorldLogic {
   statusMatrix: string[][];
   nextStatusMatrix: string[][];
@@ -12,20 +11,15 @@ export class WorldLogic {
   //   this.statusMatrix = newMatrix;
   //   return [['x'], ['x']];
   // }
-
-  
-  // display(): string {
-  //   return "I am the world"
-  // }
 }
 export interface Ruleset {
-  evolve (currentMatrix: string[][]): string[][]; 
+  evolve(currentMatrix: string[][]): string[][]; 
 }
 
 export class ConwayRuleset implements Ruleset {
   // Implement the rules for Conway here
   evolve(currentMatrix: string[][]): string[][] {
-    return [['x']];
+    return [['_', 'x', '_']];
   }
 }
 
@@ -44,13 +38,6 @@ class GameLogic {
     this.world.statusMatrix = this.ruleset.evolve(this.world.statusMatrix);
     return this.generation += 1;
   }
-
-  // display(): string {
-  //   return `${this.generation}: ${this.world.display()}`;
-  // }
-
-
 }
-
 
 export default GameLogic;
