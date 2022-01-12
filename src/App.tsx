@@ -1,13 +1,32 @@
-import React from 'react';
-import Game, {World, Ruleset} from "./logic/Game";
+import React, { useState } from 'react';
+import GameLogic, {WorldLogic, Ruleset} from "./logic/GameLogic";
+
+
+interface GameProps {
+  logic: GameLogic;
+}
+const Game: React.FC<GameProps> = ({ logic }) => {
+
+  const [generation, setGeneration] = useState(logic.generation);
+
+  const nextGeneration = () => {
+    setGeneration(logic.nextState());
+  }
+  return (<div>
+    {logic.display()}
+    <button onClick={nextGeneration}>Next</button>
+  </div>)
+}
+
 
 function App() {
-  const world = new World();
+  const world = new WorldLogic();
   const ruleset = new Ruleset();
-  const game = new Game(world, ruleset);
+  const game = new GameLogic(world, ruleset);
+
   return (
     <div>
-      {game.display()}
+      <Game logic={game} />
     </div>
   );
 }
