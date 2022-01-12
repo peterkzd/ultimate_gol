@@ -1,7 +1,7 @@
 export class WorldLogic {
-  statusMatrix: string[][];
-  nextStatusMatrix: string[][];
-  constructor(statusMatrix: string[][]) {
+  statusMatrix: number[][];
+  nextStatusMatrix: number[][];
+  constructor(statusMatrix: number[][]) {
     this.statusMatrix = statusMatrix;
     this.nextStatusMatrix = statusMatrix;
   }

@@ -1,5 +1,5 @@
 export interface Ruleset {
-  evolve(currentMatrix: string[][]): string[][]; 
+  evolve(currentMatrix: number[][]): number[][]; 
 }
 
 export default Ruleset;
