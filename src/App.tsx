@@ -1,26 +1,16 @@
 import React, { useState } from 'react';
+
+// Import all the logic
 import GameLogic from "./logic/GameLogic";
 import WorldLogic from "./logic/WorldLogic";
 import ConwayRuleset from "./logic/rulesets/ConwayRuleset";
+import WorldGenerator from "./logic/WorldGenerator";
 
+// Import the UI
 import Game from "./ui/Game";
 
-
-const cellStatusMatrix = [
-  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
-  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
-  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
-  ['_', '_', '_', '_', 'x', '_', '_', '_', '_', '_'],
-  ['_', '_', '_', 'x', 'x', 'x', '_', '_', '_', '_'],
-  ['_', '_', '_', '_', 'x', '_', '_', '_', '_', '_'],
-  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
-  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
-  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
-  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
-]
-
 function App() {
-  const world = new WorldLogic(cellStatusMatrix);
+  const world = new WorldLogic(new WorldGenerator(10,10).get_initial_map());
   const ruleset = new ConwayRuleset();
   const game = new GameLogic(world, ruleset);
 
