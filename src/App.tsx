@@ -13,6 +13,7 @@ const Game: React.FC<GameProps> = ({ logic }) => {
     setGeneration(logic.nextState());
   }
   return (<div>
+    <h1>The Ultimate Game of Life</h1>
     {logic.display()}
     <button onClick={nextGeneration}>Next</button>
   </div>)
