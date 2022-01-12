@@ -1,9 +1,13 @@
 import internal from "stream";
 
 export class WorldLogic {
-  display(): string {
-    return "I am the world"
+  statusMatrix: string[][];
+  constructor(statusMatrix: string[][]) {
+    this.statusMatrix = statusMatrix;
   }
+  // display(): string {
+  //   return "I am the world"
+  // }
 }
 export class Ruleset {}
 
@@ -22,9 +26,9 @@ class GameLogic {
     return this.generation += 1;
   }
 
-  display(): string {
-    return `${this.generation}: ${this.world.display()}`;
-  }
+  // display(): string {
+  //   return `${this.generation}: ${this.world.display()}`;
+  // }
 
 
 }
