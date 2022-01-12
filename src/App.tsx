@@ -2,46 +2,53 @@ import React, { useState } from 'react';
 import GameLogic, {WorldLogic, Ruleset} from "./logic/GameLogic";
 
 const cellStatusMatrix = [
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', 'x', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', 'x', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+  ['_', '_', '_', '_', 'x', '_', '_', '_', '_', '_'],
+  ['_', '_', '_', 'x', 'x', 'x', '_', '_', '_', '_'],
+  ['_', '_', '_', '_', 'x', '_', '_', '_', '_', '_'],
+  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
+  ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
 ]
 
 interface WorldProps {
-  logic: WorldLogic;
+  worldLogic: WorldLogic;
 }
 
-const World: React.FC<WorldProps> = ({ logic }) => {
+const World: React.FC<WorldProps> = ({ worldLogic }) => {
   return (
-    <>
-      {logic.statusMatrix}
-    </>
+    <table>
+      <thead></thead>
+      <tbody>
+        {worldLogic.statusMatrix.map((row, rowIndex) => (
+          <tr key={rowIndex}>
+            {row.map((cell, columnIndex) => <td key={`${rowIndex}-${columnIndex}`}>{cell}</td>)}
+          </tr>
+        ))}
+      </tbody>
+    </table>
   )
 }
 
 interface GameProps {
-  logic: GameLogic;
+  gameLogic: GameLogic;
 }
-const Game: React.FC<GameProps> = ({ logic }) => {
+const Game: React.FC<GameProps> = ({ gameLogic }) => {
 
-  const [generation, setGeneration] = useState(logic.generation);
+  const [generation, setGeneration] = useState(gameLogic.generation);
 
   const nextGeneration = () => {
-    setGeneration(logic.nextState());
+    setGeneration(gameLogic.nextState());
   }
   return (
   <div>
     <h1>The Ultimate Game of Life</h1>
     {/* {logic.display()} */}
     <p>Generation: {generation}</p>
-    <World logic={logic.world} />
+    <World worldLogic={gameLogic.world} />
     <button onClick={nextGeneration}>Next</button>
   </div>
   )
@@ -55,7 +62,7 @@ function App() {
 
   return (
     <div>
-      <Game logic={game} />
+      <Game gameLogic={game} />
     </div>
   );
 }
