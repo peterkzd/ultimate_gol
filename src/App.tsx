@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import GameLogic, {WorldLogic, Ruleset} from "./logic/GameLogic";
+import GameLogic, {WorldLogic, Ruleset, ConwayRuleset} from "./logic/GameLogic";
 
 const cellStatusMatrix = [
   ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_'],
@@ -57,7 +57,7 @@ const Game: React.FC<GameProps> = ({ gameLogic }) => {
 
 function App() {
   const world = new WorldLogic(cellStatusMatrix);
-  const ruleset = new Ruleset();
+  const ruleset = new ConwayRuleset();
   const game = new GameLogic(world, ruleset);
 
   return (
