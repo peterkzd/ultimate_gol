@@ -9,9 +9,10 @@ const World: React.FC<WorldProps> = ({ worldLogic }) => {
     <table>
       <thead></thead>
       <tbody>
-        {worldLogic.statusMatrix.map((row, rowIndex) => (
+        {worldLogic.cellMatrix.map((row, rowIndex) => (
           <tr key={rowIndex}>
-            {row.map((cell, columnIndex) => <td key={`${rowIndex}-${columnIndex}`}>{cell}</td>)}
+            {row.map((cell, columnIndex) =>
+              <td key={`${rowIndex}-${columnIndex}`}>{cell.toString}</td>)}
           </tr>
         ))}
       </tbody>

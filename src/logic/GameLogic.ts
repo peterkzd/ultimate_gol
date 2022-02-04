@@ -13,7 +13,7 @@ class GameLogic {
   }
 
   nextState(): number {
-    this.world.statusMatrix = this.ruleset.evolve(this.world.statusMatrix);
+    this.world = this.ruleset.evolve(this.world);
     return this.generation += 1;
   }
 }
