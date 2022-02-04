@@ -10,24 +10,21 @@ export class WorldGenerator {
   }
 
   get_initial_map(): CellState[][] {
-    // let arr = new Array(this.width);
-    // for (var i = 0; i < this.width; i++){
-    //   arr[i] = new Array(this.height);
-    //   arr[i].fill(0);
-    // }
-    // return arr;
+
+    const x = CellState.DEAD;
+    const o = CellState.ALIVE;
 
     return [
-      [CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD],
-      [CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD],
-      [CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD],
-      [CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.ALIVE, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD],
-      [CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.ALIVE, CellState.DEAD, CellState.ALIVE, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD],
-      [CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.ALIVE, CellState.ALIVE, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD],
-      [CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD],
-      [CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD],
-      [CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD],
-      [CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD, CellState.DEAD],
+      [x, x, x, x, x, x, x, x, x, x],
+      [x, x, x, x, x, x, x, x, x, x],
+      [x, x, x, x, x, x, x, x, x, x],
+      [x, x, x, x, o, x, x, x, x, x],
+      [x, x, x, o, x, o, x, x, x, x],
+      [x, x, x, o, o, o, x, x, x, x],
+      [x, x, x, x, x, x, x, x, x, x],
+      [x, x, x, x, x, x, x, x, x, x],
+      [x, x, x, x, x, x, x, x, x, x],
+      [x, x, x, x, x, x, x, x, x, x],
     ];
   }
 }

@@ -25,21 +25,6 @@ export class ConwayRuleset implements Ruleset {
         return CellState.DEAD; // outside the map
       }
     })
-
-    // const width = currentMatrix.length;
-    // const height = currentMatrix[0].length;
-
-
-    // let nextMatrix = currentMatrix;
-    // for (let i = 0; i < 10; i++){
-    //   let rand_w = Math.floor(Math.random()*width);
-    //   let rand_h = Math.floor(Math.random()*height);
-
-    //   let new_val = Math.floor(Math.random()*2);
-
-    //   nextMatrix[rand_w][rand_h] = new_val;
-    // }
-
   }
 
 }
