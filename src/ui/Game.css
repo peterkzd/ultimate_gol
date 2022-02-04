@@ -1,0 +1,15 @@
+.container {
+  display: grid; 
+  grid-template-columns: 0.25fr 1fr 1fr; 
+  grid-template-rows: 0.25fr 1fr 1fr; 
+  gap: 10px 10px; 
+  grid-template-areas: 
+    "sidebar header header"
+    "sidebar main main"
+    "sidebar main main"; 
+  
+  height: 100vh;
+}
+.sidebar { grid-area: sidebar; }
+.header { grid-area: header; }
+.main { grid-area: main; }

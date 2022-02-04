@@ -2,7 +2,7 @@
 
 ## Plan
 
-1. Finish implementing the rules
+1. ~Finish implementing the rules~
 2. Automating evolution
 3. UI
 4. Drawing start position
