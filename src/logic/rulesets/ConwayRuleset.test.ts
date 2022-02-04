@@ -7,32 +7,40 @@ const o = CellState.ALIVE;
 
 describe("ConwayRuleset", () => {
   describe("evolve()", () => {
-    describe("when there are 2 adjacent alive cells on the board", () => {
-      it("stays alive", () => {
-        const rules = new ConwayRuleset();
-    
-        const initState = [
+    [
+      {
+        description: "one hopeless cell",
+        initial: [
+          [o, x]
+        ],
+        next: [
+          [x, x]
+        ]
+      },
+      {
+        description: "when there are 2 adjacent alive cells on the board",
+        initial: [
           [x, x, x],
           [x, o, o],
           [x, o, x],
           [x, x, x],
-        ];
-
-        const expectedState = [
+        ],
+        next: [
           [x, x, x],
           [x, o, x],
           [x, x, x],
           [x, x, x],
-        ];
+        ]
+      }
 
-        const world = new WorldLogic(initState);
-
+    ].forEach((testCase) => {
+      it(testCase.description, () => {
+        const rules = new ConwayRuleset();
+        const world = new WorldLogic(testCase.initial);
         const nextWorld = rules.evolve(world);
 
-        expect(nextWorld.cellMatrix).toEqual(new WorldLogic(expectedState).cellMatrix);
+        expect(nextWorld.cellMatrix).toEqual(new WorldLogic(testCase.next).cellMatrix);
       })
     })
   })
 })
-
-
