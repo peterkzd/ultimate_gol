@@ -3,9 +3,10 @@
 ## Plan
 
 1. ~Finish implementing the rules~
-2. Automating evolution
-3. UI
-4. Drawing start position
+2. ~Automating evolution~
+3. Need to check for 8 neighbours, not 4
+4. UI
+5. Drawing start position
 ## Other
 
 See https://docs.google.com/document/d/1njcqMZ2GuAprrujTlmbH3H3TI4D75W4APHcZRMi3W98
