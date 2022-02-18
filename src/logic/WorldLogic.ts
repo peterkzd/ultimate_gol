@@ -3,12 +3,11 @@ import CellLogic, { CellState } from "./CellLogic";
 type EvolutionLogic = (cell: CellLogic) => CellState
 
 export class WorldLogic {
-  // statusMatrix: number[][];
   cellMatrix: CellLogic[][];
 
   constructor(statusMatrix: CellState[][]) {
-    this.cellMatrix = statusMatrix.map((statusRow, rowIndex) =>
-      statusRow.map((status, columnIndex) =>
+    this.cellMatrix = statusMatrix.map((cellsRow, rowIndex) =>
+    cellsRow.map((status, columnIndex) =>
         new CellLogic(
           { x: columnIndex, y: rowIndex },
           status
@@ -16,9 +15,21 @@ export class WorldLogic {
   }
 
   evolve(evolutionLogic: EvolutionLogic): WorldLogic {
-    const nextMatrix = this.cellMatrix.map((cellsRow, rowIndex) =>
-      cellsRow.map((oldCell, columnIndex) =>
-        evolutionLogic(oldCell)));
+    // const nextMatrix = this.cellMatrix.map((cellsRow, rowIndex) =>
+    //   cellsRow.map((oldCell, columnIndex) =>
+    //     evolutionLogic(oldCell)));
+    const nextMatrix = this.cellMatrix.map((cellsRow, rowIndex) => {
+      return cellsRow.map((oldCell, columnIndex) => {
+        const result = evolutionLogic(oldCell);
+        if (result === CellState.ALIVE) {
+          console.log(`>>>>>>>>>>>> ALIVE result`, result);
+          console.log(`evolve oldCell.x, columnIndex, oldCell.y, rowIndex`, oldCell.position.x, columnIndex, oldCell.position.y, rowIndex);
+
+        }
+        return result;
+      })
+    });
+
     return new WorldLogic(nextMatrix);
   }
 
@@ -28,47 +39,48 @@ export class WorldLogic {
 
   // Returns the cells around the input cell that are ALIVE
   aliveNeighboursFor(cell: CellLogic): CellLogic[] {
-
     const neighbours: CellLogic[] = [];
 
-    // Loop through four directions -> NESW
-    const northCell = this.cellMatrix[cell.position.x]?.[cell.position.y-1];
-    const eastCell = this.cellMatrix[cell.position.x+1]?.[cell.position.y];
-    const southCell = this.cellMatrix[cell.position.x]?.[cell.position.y+1];
-    const westCell = this.cellMatrix[cell.position.x-1]?.[cell.position.y];
+    // // Top
+    // const northWestCell = this.cellMatrix[cell.position.x-1]?.[cell.position.y-1];
+    // const northCell     = this.cellMatrix[cell.position.x+0]?.[cell.position.y-1];
+    // const northEastCell = this.cellMatrix[cell.position.x+1]?.[cell.position.y-1];
 
-    const northEastCell = this.cellMatrix[cell.position.x+1]?.[cell.position.y-1];
-    const southEastCell = this.cellMatrix[cell.position.x+1]?.[cell.position.y+1];
-    const southWestCell = this.cellMatrix[cell.position.x-1]?.[cell.position.y+1];
-    const northWestCell = this.cellMatrix[cell.position.x-1]?.[cell.position.y-1];
+    // // Center
+    // const westCell      = this.cellMatrix[cell.position.x-1]?.[cell.position.y+0];
+    // const eastCell      = this.cellMatrix[cell.position.x+1]?.[cell.position.y+0];
 
-    if (northCell !== undefined && northCell.state === CellState.ALIVE) {
-      neighbours.push(northCell);
-    }
-    if (eastCell !== undefined && eastCell.state === CellState.ALIVE) {
-      neighbours.push(eastCell);
-    }
-    if (southCell !== undefined && southCell.state === CellState.ALIVE) {
-      neighbours.push(southCell);
-    }
-    if (westCell !== undefined && westCell.state === CellState.ALIVE) {
-      neighbours.push(westCell);
-    }
+    // // Bottom
+    // const southWestCell = this.cellMatrix[cell.position.x-1]?.[cell.position.y+1];
+    // const southCell     = this.cellMatrix[cell.position.x+0]?.[cell.position.y+1];
+    // const southEastCell = this.cellMatrix[cell.position.x+1]?.[cell.position.y+1];
 
-    if (northEastCell !== undefined && northEastCell.state === CellState.ALIVE) {
-      neighbours.push(northEastCell);
-    }
-    if (southEastCell !== undefined && southEastCell.state === CellState.ALIVE) {
-      neighbours.push(southEastCell);
-    }
-    if (southWestCell !== undefined && southWestCell.state === CellState.ALIVE) {
-      neighbours.push(southWestCell);
-    }
-    if (northWestCell !== undefined && northWestCell.state === CellState.ALIVE) {
-      neighbours.push(northWestCell);
-    }
+    // Top
+    const northWestCell = this.cellMatrix[cell.position.y-1]?.[cell.position.x-1];
+    const northCell     = this.cellMatrix[cell.position.y+0]?.[cell.position.x-1];
+    const northEastCell = this.cellMatrix[cell.position.y+1]?.[cell.position.x-1];
 
-    return neighbours;
+    // Center
+    const westCell      = this.cellMatrix[cell.position.y-1]?.[cell.position.x+0];
+    const eastCell      = this.cellMatrix[cell.position.y+1]?.[cell.position.x+0];
+
+    // Bottom
+    const southWestCell = this.cellMatrix[cell.position.y-1]?.[cell.position.x+1];
+    const southCell     = this.cellMatrix[cell.position.y+0]?.[cell.position.x+1];
+    const southEastCell = this.cellMatrix[cell.position.y+1]?.[cell.position.x+1];
+
+    const aliveNeighbours = [northCell,
+      eastCell,
+      southCell,
+      westCell,
+      northEastCell,
+      southEastCell,
+      southWestCell,
+      northWestCell].filter((cell) => cell?.isAlive)
+
+    // console.log(aliveNeighbours);
+    // return neighbours;
+    return aliveNeighbours;
   }
   // updateMatrix(newMatrix: string[][]): string[][] {
   //   this.statusMatrix = newMatrix;

@@ -1,5 +1,5 @@
 import Ruleset from "./Ruleset";
-import { CellState } from "../CellLogic";
+import CellLogic, { CellState } from "../CellLogic";
 import WorldLogic from "../WorldLogic";
 
 export class ConwayRuleset implements Ruleset {
@@ -11,7 +11,7 @@ export class ConwayRuleset implements Ruleset {
   Reproduction:     dead,       ==3 neighbours,     alive
   */
   evolve(world: WorldLogic): WorldLogic {
-    return world.evolve((cell) => {
+    return world.evolve((cell: CellLogic) => {
       const count = world.aliveNeighboursFor(cell).length;
       if (cell.isAlive && count < 2) {
         return CellState.DEAD;

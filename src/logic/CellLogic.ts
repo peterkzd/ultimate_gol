@@ -23,7 +23,7 @@ class CellLogic {
     return this.state === CellState.DEAD;
   }
 
-  get toString() {
+  get toString(): string {
     return this.state === CellState.ALIVE ? "1" : "0";
   }
 }

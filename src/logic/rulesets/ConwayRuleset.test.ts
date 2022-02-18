@@ -47,6 +47,57 @@ describe("ConwayRuleset", () => {
           [x, x, x],
         ]
       },
+      {
+        description: "Blinks",
+        initial: [
+          [x, x, x, x, x],
+          [x, x, x, x, x],
+          [x, o, o, o, x],
+          [x, x, x, x, x],
+          [x, x, x, x, x],
+        ],
+        next: [
+          [x, x, x, x, x],
+          [x, x, o, x, x],
+          [x, x, o, x, x],
+          [x, x, o, x, x],
+          [x, x, x, x, x],
+        ]
+      },
+      {
+        description: "Still life",
+        initial: [
+          [x, x, x, x, x],
+          [x, x, x, x, x],
+          [x, x, o, o, x],
+          [x, x, o, o, x],
+          [x, x, x, x, x],
+        ],
+        next: [
+          [x, x, x, x, x],
+          [x, x, x, x, x],
+          [x, x, o, o, x],
+          [x, x, o, o, x],
+          [x, x, x, x, x],
+        ]
+      },
+      {
+        description: "Beacon Oscillator",
+        initial: [
+          [o, o, x, x, x],
+          [o, o, x, x, x],
+          [x, x, o, o, x],
+          [x, x, o, o, x],
+          [x, x, x, x, x],
+        ],
+        next: [
+          [o, o, x, x, x],
+          [o, x, x, x, x],
+          [x, x, x, o, x],
+          [x, x, o, o, x],
+          [x, x, x, x, x],
+        ]
+      },
     ].forEach((testCase) => {
       it(testCase.description, () => {
         const rules = new ConwayRuleset();
