@@ -1,3 +1,5 @@
+import { reduceEachTrailingCommentRange } from "typescript";
+
 export type Vector2D = {
   x: number;
   y: number;
@@ -25,6 +27,10 @@ class CellLogic {
 
   get toString(): string {
     return this.state === CellState.ALIVE ? "1" : "0";
+  }
+
+  toggleState(): void {
+    this.state = this.isAlive ? CellState.DEAD : CellState.ALIVE;
   }
 }
 

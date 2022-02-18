@@ -10,7 +10,7 @@ import WorldGenerator from "./logic/WorldGenerator";
 import Game from "./ui/Game";
 
 function App() {
-  const world = new WorldLogic(new WorldGenerator(10, 10).get_initial_map());
+  const world = new WorldLogic(new WorldGenerator().get_initial_map());
   const ruleset = new ConwayRuleset();
   const game = new GameLogic(world, ruleset);
 

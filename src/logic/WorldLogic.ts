@@ -14,6 +14,10 @@ export class WorldLogic {
         )))
   }
 
+  cellAt(x: number, y: number): CellLogic {
+    return this.cellMatrix[y][x];
+  }
+
   evolve(evolutionLogic: EvolutionLogic): WorldLogic {
     // const nextMatrix = this.cellMatrix.map((cellsRow, rowIndex) =>
     //   cellsRow.map((oldCell, columnIndex) =>

@@ -11,10 +11,12 @@ class GameLogic {
     this.world = world;
     this.ruleset = ruleset;
     this.generation = 0;
+
+    this.reset();
   }
 
   reset() {
-    this.world = new WorldLogic(new WorldGenerator(10, 10).get_initial_map());
+    this.world = new WorldLogic(new WorldGenerator().get_initial_map());
     this.generation = 0;
   }
 
