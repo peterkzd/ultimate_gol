@@ -1,4 +1,5 @@
 import WorldLogic from "./WorldLogic";
+import WorldGenerator from "./WorldGenerator";
 import Ruleset from "./rulesets/Ruleset";
 
 class GameLogic {
@@ -9,6 +10,11 @@ class GameLogic {
   constructor(world: WorldLogic, ruleset: Ruleset) {
     this.world = world;
     this.ruleset = ruleset;
+    this.generation = 0;
+  }
+
+  reset() {
+    this.world = new WorldLogic(new WorldGenerator(10, 10).get_initial_map());
     this.generation = 0;
   }
 

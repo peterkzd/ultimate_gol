@@ -23,6 +23,11 @@ const Game: React.FC<GameProps> = ({ gameLogic }) => {
     setPlay((play) => !play)
   }
 
+  const reset = () => {
+    gameLogic.reset();
+    setGeneration(gameLogic.generation);
+  }
+
   const setTimeInterval = (event: { target: { value: string; }; }) => {
     const val = parseInt(event.target.value, 10);
     if (!isNaN(val)){
@@ -45,7 +50,7 @@ const Game: React.FC<GameProps> = ({ gameLogic }) => {
     <aside className="sidebar">
       <button onClick={togglePlay}>{play ? "Stop" : "Start"}</button>
       <button onClick={nextGeneration} disabled={play}>Next Step</button>
-      <button onClick={nextGeneration} disabled={play}>Reset</button>
+      <button onClick={reset} disabled={play}>Reset</button>
       <div>
         <label htmlFor="timeIntervalInput">Time Interval:</label>
         <input type="text" id="timeIntervalInput" value={timeStep} onChange={setTimeInterval} disabled={play}>
