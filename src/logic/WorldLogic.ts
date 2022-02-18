@@ -31,7 +31,7 @@ export class WorldLogic {
 
   // Returns the cells around the input cell that are ALIVE
   aliveNeighboursFor(cell: CellLogic): CellLogic[] {
-    const neighbours: CellLogic[] = [];
+    // const neighbours: CellLogic[] = [];
 
     // Top
     const northWestCell = this.cellMatrix[cell.position.y-1]?.[cell.position.x-1];
