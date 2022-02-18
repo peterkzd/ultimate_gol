@@ -4,7 +4,7 @@
 
 1. ~Finish implementing the rules~
 2. ~Automating evolution~
-3. Need to check for 8 neighbours, not 4
+3. ~Need to check for 8 neighbours, not 4~
 4. UI
 5. Drawing start position
 ## Other

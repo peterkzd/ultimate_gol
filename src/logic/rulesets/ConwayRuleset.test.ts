@@ -27,12 +27,26 @@ describe("ConwayRuleset", () => {
         ],
         next: [
           [x, x, x],
+          [x, o, o],
+          [x, o, o],
+          [x, x, x],
+        ]
+      },
+      {
+        description: "It accounts for cells in the corners (ie: 8 neighbours)",
+        initial: [
+          [x, x, o],
+          [x, o, x],
+          [o, x, x],
+          [x, x, x],
+        ],
+        next: [
+          [x, x, x],
           [x, o, x],
           [x, x, x],
           [x, x, x],
         ]
-      }
-
+      },
     ].forEach((testCase) => {
       it(testCase.description, () => {
         const rules = new ConwayRuleset();

@@ -37,6 +37,11 @@ export class WorldLogic {
     const southCell = this.cellMatrix[cell.position.x]?.[cell.position.y+1];
     const westCell = this.cellMatrix[cell.position.x-1]?.[cell.position.y];
 
+    const northEastCell = this.cellMatrix[cell.position.x+1]?.[cell.position.y-1];
+    const southEastCell = this.cellMatrix[cell.position.x+1]?.[cell.position.y+1];
+    const southWestCell = this.cellMatrix[cell.position.x-1]?.[cell.position.y+1];
+    const northWestCell = this.cellMatrix[cell.position.x-1]?.[cell.position.y-1];
+
     if (northCell !== undefined && northCell.state === CellState.ALIVE) {
       neighbours.push(northCell);
     }
@@ -48,6 +53,19 @@ export class WorldLogic {
     }
     if (westCell !== undefined && westCell.state === CellState.ALIVE) {
       neighbours.push(westCell);
+    }
+
+    if (northEastCell !== undefined && northEastCell.state === CellState.ALIVE) {
+      neighbours.push(northEastCell);
+    }
+    if (southEastCell !== undefined && southEastCell.state === CellState.ALIVE) {
+      neighbours.push(southEastCell);
+    }
+    if (southWestCell !== undefined && southWestCell.state === CellState.ALIVE) {
+      neighbours.push(southWestCell);
+    }
+    if (northWestCell !== undefined && northWestCell.state === CellState.ALIVE) {
+      neighbours.push(northWestCell);
     }
 
     return neighbours;
